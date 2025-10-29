@@ -38,7 +38,7 @@ class TextEntData(Dataset):
             'targets': torch.tensor(self.targets[item], dtype=torch.long)
         }
 
-def create_data_loader(df, tokenizer, max_len, batch_size):
+def create_data_loader(df, tokenizer, max_len, batch_size, shuffle=True):
     ds = TextEntData(
         premises=df.premise.to_numpy(),
         hypotheses=df.hypothesis.to_numpy(),
@@ -50,5 +50,5 @@ def create_data_loader(df, tokenizer, max_len, batch_size):
     return DataLoader(
         ds,
         batch_size=batch_size,
-        shuffle=True
+        shuffle=shuffle
     )
